@@ -7,7 +7,7 @@ The android app lets you:
 - Generate password
 
 ## Interface
-<img src="[https://your-image-url.type](https://raw.githubusercontent.com/raissonsouto/Juggler/main/juggler-ui.jpg)" width="200" height="400">
+<img src="https://raw.githubusercontent.com/raissonsouto/Juggler/main/juggler-ui.jpg" width="200" height="400">
 ## How to get it
 The app isn't available yet in any app store.
 
