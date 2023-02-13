@@ -9,7 +9,7 @@ The android app lets you:
 ## Interface
 
 ## How to get it
-The app isn avaible yet in any app store.
+The app isn't available yet in any app store.
 
 ## How to run it
 

@@ -20,23 +20,48 @@ class SafeSliderState extends State<SafeSlider> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Column(
       children: [
-        const Text("1"),
-        Slider(
-          value: _sliderValue.toDouble(),
-          min: 1,
-          max: 256,
-          divisions: 256,
-          onChanged: (double newValue) {
-            setState(() {
-              _sliderValue = newValue.round();
-            });
-            widget.onChanged(_sliderValue.round());
-          },
+        Text("Password length: $_sliderValue",
+            style: const TextStyle(fontSize: 18)),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextButton(
+                onPressed: () {
+                  setState(() {
+                    _sliderValue--;
+                  });
+                },
+                child: const Text(
+                  "-",
+                  style: TextStyle(fontSize: 20),
+                )),
+            const Text("1"),
+            SizedBox(
+                width: 200,
+                child: Slider(
+                  value: _sliderValue.toDouble(),
+                  min: 1,
+                  max: 256,
+                  divisions: 256,
+                  onChanged: (double newValue) {
+                    setState(() {
+                      _sliderValue = newValue.round();
+                    });
+                    widget.onChanged(_sliderValue.round());
+                  },
+                )),
+            const Text("256"),
+            TextButton(
+                onPressed: () {
+                  setState(() {
+                    _sliderValue++;
+                  });
+                },
+                child: const Text("+", style: TextStyle(fontSize: 20)))
+          ],
         ),
-        const Text("256"),
       ],
     );
   }

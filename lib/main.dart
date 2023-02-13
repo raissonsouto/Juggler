@@ -22,8 +22,10 @@ class _MyAppState extends State<MyApp> {
   bool capitalLetters = false;
   bool numbers = false;
   bool symbols = false;
-
   int passLength = 12;
+
+
+  Color themeColor = const Color.fromARGB(255, 15, 61, 97);
 
   void _generatePassword() {
     setState(() {
@@ -40,25 +42,39 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: MaterialColor(themeColor.value, {
+            50: themeColor.withOpacity(0.1),
+            100: themeColor.withOpacity(0.2),
+            200: themeColor.withOpacity(0.3),
+            300: themeColor.withOpacity(0.4),
+            400: themeColor.withOpacity(0.5),
+            500: themeColor.withOpacity(0.6),
+            600: themeColor.withOpacity(0.7),
+            700: themeColor.withOpacity(0.8),
+            800: themeColor.withOpacity(0.9),
+            900: themeColor.withOpacity(1),
+          }),
         ),
         home: Scaffold(
           appBar:
-              AppBar(title: const Text('Juggler'), shadowColor: Colors.white24),
+              AppBar(
+                  title: const Center(child: Text('Juggler')),
+                  shadowColor: Colors.white24,
+              ),
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
                   padding: const EdgeInsets.only(top: 50, bottom: 30),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: Container(
-                      width: 350,
-                      height: 150,
-                      decoration: const BoxDecoration(
-                        color: Color.fromARGB(255, 40, 40, 40),
-                        borderRadius: BorderRadius.all(Radius.circular(3)),
-                      ),
+                  child: Container(
+                    width: 350,
+                    height: 150,
+                    decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 40, 40, 40),
+                      borderRadius: BorderRadius.all(Radius.circular(3)),
+                    ),
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
                       child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: Text(
@@ -71,7 +87,8 @@ class _MyAppState extends State<MyApp> {
                         ),
                       ),
                     ),
-                  ),),
+                  )
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -81,7 +98,7 @@ class _MyAppState extends State<MyApp> {
                         onPressed: () {
                           Clipboard.setData(ClipboardData(text: password));
                         },
-                        color: Colors.blue,
+                        color: themeColor,
                         child: const Padding(
                             padding: EdgeInsets.only(
                                 left: 40, right: 40, top: 10, bottom: 10),
@@ -93,7 +110,7 @@ class _MyAppState extends State<MyApp> {
                       padding: const EdgeInsets.all(10),
                       child: MaterialButton(
                         onPressed: _generatePassword,
-                        color: Colors.blue,
+                        color: themeColor,
                         child: const Padding(
                             padding: EdgeInsets.only(
                                 left: 25, right: 25, top: 10, bottom: 10),
@@ -103,13 +120,15 @@ class _MyAppState extends State<MyApp> {
                       )),
                 ],
               ),
-              SafeSlider(
-                  initialValue: passLength,
-                  onChanged: (int value) {
-                    setState(() {
-                      passLength = value;
-                    });
-                  }),
+              Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: SafeSlider(
+                      initialValue: passLength,
+                      onChanged: (int value) {
+                        setState(() {
+                          passLength = value;
+                        });
+                      })),
               SafeCheckBox(
                   title: "Letters",
                   initialValue: letters,
@@ -143,7 +162,7 @@ class _MyAppState extends State<MyApp> {
                     });
                   }),
             ],
-          ),
+          )
         ));
   }
 }
